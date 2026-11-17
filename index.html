@@ -70,6 +70,49 @@
 @keyframes heritageReveal{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:650px){.preview.tpl-heritage{border-width:7px!important;padding:25px 13px}.preview.tpl-heritage:before,.preview.tpl-heritage:after{font-size:46px}}
 
+
+/* 9:16 premium wedding invitation flip-book */
+.flipbook-shell{padding:22px 12px 26px;background:radial-gradient(ellipse at 50% 0%,#f8e9c9,#e8d4b0 48%,#d7bd91);border-radius:22px;text-align:center;overflow:hidden}
+.flipbook-kicker{font-size:12px;letter-spacing:3px;color:#78502b;margin:0 0 14px}
+.book-stage{width:min(88vw,360px);aspect-ratio:9/16;margin:0 auto;position:relative;perspective:1800px;filter:drop-shadow(0 20px 24px #39121e38)}
+.book-page{position:absolute;inset:0;border-radius:5px 17px 17px 5px;overflow:hidden;transform-origin:left center;background:#fff5dc;border:1px solid #b58a48;box-shadow:inset 9px 0 15px #5a321018,inset -5px 0 10px #fff9e8;backface-visibility:hidden}
+.book-page:before{content:"";position:absolute;inset:9px;border:1px solid #c49b58;pointer-events:none;z-index:2}
+.book-page:after{content:"✦  ❧  ✦";position:absolute;bottom:20px;left:0;right:0;color:#a77b3c;font-size:16px;letter-spacing:7px;opacity:.8}
+.book-page.cover{background:radial-gradient(ellipse at 50% 40%,#8f3445,#4a1426 75%);color:#f9e5b2;border:5px double #d8b66e;box-shadow:inset 0 0 0 7px #fff2cf18,inset 0 0 50px #21081380}
+.book-page.cover:before{inset:13px;border:1px solid #e2c57f}
+.book-page.cover:after{color:#f2d18c;bottom:25px}
+.book-inner{position:absolute;inset:0;padding:12% 9% 15%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.book-ornament{font-size:clamp(24px,7vw,34px);color:#d9b56c;line-height:1.4}
+.book-mantra{font-size:clamp(12px,3vw,15px);letter-spacing:2px;color:#f6dfad;margin:12px 0}
+.book-title{font-size:clamp(30px,8vw,43px);line-height:1.35;color:#ffedc2;margin:12px 0;text-shadow:0 3px 10px #1c0710}
+.book-names{font-size:clamp(23px,6vw,32px);line-height:1.55;color:#7a2035;margin:14px 0;font-weight:bold}
+.book-copy{font-size:clamp(13px,3.5vw,16px);line-height:2;color:#583b32;margin:8px 0}
+.book-small{font-size:11px;letter-spacing:2px;color:#9b7136;margin:9px 0}
+.book-divider{width:65%;height:1px;background:linear-gradient(90deg,transparent,#bd9650,transparent);margin:14px auto}
+.book-date{font-size:clamp(19px,5vw,25px);color:#7a2035;font-weight:bold;line-height:1.5}
+.book-page.paper{background:radial-gradient(ellipse at top,#fffdf3,#f6e9ce 78%);color:#50352d}
+.book-page.paper .book-inner{padding-bottom:18%}
+.book-page.paper .book-ornament{color:#9b7136}
+.book-page.paper .book-title{font-size:clamp(24px,6vw,34px);color:#7a2035;text-shadow:none}
+.book-page.paper .book-mantra{color:#986e31}
+.book-page.paper .book-copy strong{color:#7a2035}
+.book-page.paper .book-small{color:#946b34}
+.book-turn{position:absolute;inset:0;z-index:5;transform-style:preserve-3d;transform-origin:left center;display:none;pointer-events:none}
+.book-turn.active{display:block;animation:turnForward .85s cubic-bezier(.2,.65,.25,1) forwards}
+.book-turn.reverse{transform-origin:right center;animation:turnBackward .85s cubic-bezier(.2,.65,.25,1) forwards}
+.book-turn .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:5px 17px 17px 5px;overflow:hidden}
+.book-turn .back{transform:rotateY(180deg)}
+@keyframes turnForward{0%{transform:rotateY(0)}100%{transform:rotateY(-180deg)}}
+@keyframes turnBackward{0%{transform:rotateY(0)}100%{transform:rotateY(180deg)}}
+.book-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px auto 0}
+.book-nav{border:1px solid #9b7136;background:linear-gradient(135deg,#6b1d2a,#421321);color:#ffedc2;border-radius:50%;width:46px;height:46px;font-size:22px;box-shadow:0 5px 12px #4b172533;cursor:pointer}
+.book-nav:disabled{opacity:.35;cursor:not-allowed}
+.book-count{min-width:88px;font-size:13px;color:#69472b;letter-spacing:1px}
+.book-hint{font-size:12px;color:#755a40;margin:10px 0 0}
+.book-open-btn{border:1px solid #e6c77c;background:linear-gradient(110deg,#d7b36d,#f4dfaa);color:#4a1726;border-radius:25px;padding:11px 22px;font-weight:bold;margin-top:14px;box-shadow:0 6px 18px #4b17252b}
+@media(max-width:480px){.flipbook-shell{margin:0 -5px;padding:18px 6px 22px}.book-stage{width:min(88vw,340px)}.book-controls{gap:14px}}
+@media(prefers-reduced-motion:reduce){.book-turn.active{animation-duration:.01ms}}
+
 </style></head><body>
 <div id="weddingCall" class="call-overlay" role="dialog" aria-modal="true" aria-label="Wedding call invitation">
   <div class="call-card">
@@ -104,11 +147,63 @@
 <div class="template-tile" data-template="heritage" onclick="applyTemplate('heritage')"><div class="template-art art-heritage">✧<br>❧</div><b>राजसी महल</b><div class="muted">प्रीमियम शाही विरासत</div></div>
 <div class="template-tile" data-template="modern" onclick="applyTemplate('modern')"><div class="template-art art-modern">✦ ♥ ✦</div><b>मॉडर्न एलिगेंट</b><div class="muted">सादा और प्रीमियम</div></div>
 </div></section>
-<section class="panel" style="margin-top:20px"><h2 class="section">कार्ड का लाइव प्रीव्यू</h2><div id="preview" class="preview"><div class="om">॥ श्री गणेशाय नमः ॥</div><div class="gold">सादर आमंत्रण</div><h2>शुभ विवाह</h2><div class="names">दूल्हा ♥ दुल्हन</div><p>विवाह समारोह में सपरिवार पधारें</p><div class="details">तारीख और समय<br>विवाह स्थल<br>आपकी उपस्थिति सादर प्रार्थनीय है</div><div class="gold">॥ मंगल परिणय ॥</div></div><div class="actions"><button class="btn" onclick="shareCurrent()">WhatsApp पर साझा करें</button><button class="btn alt" onclick="window.print()">कार्ड प्रिंट करें</button></div></section></main><footer>ब्याव रो निमंत्रण · हर रिश्ते के लिए एक यादगार न्योता</footer>
+<section class="panel" style="margin-top:20px"><h2 class="section">कार्ड का लाइव प्रीव्यू</h2><div class="flipbook-shell">
+<div class="flipbook-kicker">A ROYAL WEDDING INVITATION</div>
+<div class="book-stage" id="bookStage">
+<div class="book-page cover" id="bookCurrent"><div class="book-inner"><div class="book-ornament">✧ ❧ ✧</div><div class="book-mantra">॥ श्री गणेशाय नमः ॥</div><div class="book-divider"></div><div class="book-small">आप सादर आमंत्रित हैं</div><div class="book-title">शुभ विवाह</div><div class="book-names" style="color:#ffedc2">दूल्हा <span style="color:#e6c77c">♥</span> दुल्हन</div><div class="book-copy" style="color:#f7e8c8">प्रेम, परंपरा और मंगल मिलन का पावन अवसर</div><div class="book-divider"></div><div class="book-small">INVITATION</div><div class="book-ornament">❦</div></div></div>
+<div class="book-turn" id="bookTurn"><div class="face front" id="bookTurnFront"></div><div class="face back" id="bookTurnBack"></div></div>
+</div>
+<div class="book-controls"><button class="book-nav" id="bookPrev" onclick="turnBook(-1)" aria-label="पिछला पन्ना">‹</button><span class="book-count" id="bookCount">कवर · 1 / 4</span><button class="book-nav" id="bookNext" onclick="turnBook(1)" aria-label="अगला पन्ना">›</button></div>
+<div class="book-hint">पन्ना पलटने के लिए तीर पर टैप करें</div>
+<button class="book-open-btn" onclick="turnBook(1)">निमंत्रण खोलें ✦</button>
+</div>
+<div id="preview" class="preview" style="display:none"><div class="om">॥ श्री गणेशाय नमः ॥</div><div class="gold">सादर आमंत्रण</div><h2>शुभ विवाह</h2><div class="names">दूल्हा ♥ दुल्हन</div><p>विवाह समारोह में सपरिवार पधारें</p><div class="details">तारीख और समय<br>विवाह स्थल<br>आपकी उपस्थिति सादर प्रार्थनीय है</div><div class="gold">॥ मंगल परिणय ॥</div></div><div class="actions"><button class="btn" onclick="shareCurrent()">WhatsApp पर साझा करें</button><button class="btn alt" onclick="window.print()">कार्ड प्रिंट करें</button></div></section></main><footer>ब्याव रो निमंत्रण · हर रिश्ते के लिए एक यादगार न्योता</footer>
 <script>
-const $=id=>document.getElementById(id);let active=null;function show(id){$('create').classList.toggle('hidden',id!=='create');$('list').classList.toggle('hidden',id!=='list');if(id==='list')listCards();}function values(){return {id:active||('byaw'+Date.now().toString(36)),groom:$('groom').value,bride:$('bride').value,family:$('family').value,date:$('date').value,time:$('time').value,venue:$('venue').value,address:$('address').value,map:$('map').value,message:$('message').value,theme:$('theme').value,template:$('template').value};}function dateText(v){if(!v)return 'शुभ विवाह';try{return new Date(v+'T00:00:00').toLocaleDateString('hi-IN',{day:'numeric',month:'long',year:'numeric'})}catch(e){return v}}function applyTemplate(t){$('template').value=t;document.querySelectorAll('.template-tile').forEach(x=>x.classList.toggle('active',x.dataset.template===t));render();}function render(d=values()){let p=$('preview');p.classList.remove('tpl-floral','tpl-mandap','tpl-modern','tpl-celestial','tpl-heritage');if(d.template&&d.template!=='royal')p.classList.add('tpl-'+d.template);document.querySelectorAll('.template-tile').forEach(x=>x.classList.toggle('active',x.dataset.template===(d.template||'royal')));let colors={royal:['#f9e7d1','#741f31','#b68b4c'],rose:['#fff0f1','#9c3f61','#c78a9b'],classic:['#fff9e9','#694b27','#b99a61']}[d.theme||'royal'];p.style.background='radial-gradient(circle at top,'+colors[0]+',#f9e7d1 75%)';p.style.borderColor=colors[2];p.querySelector('.om').textContent='॥ श्री गणेशाय नमः ॥';p.querySelector('.gold').textContent='सादर आमंत्रण';p.querySelector('h2').textContent='शुभ विवाह';p.querySelector('.names').textContent=(d.groom||'दूल्हा')+' ♥ '+(d.bride||'दुल्हन');p.querySelector('p').textContent=(d.family||'सपरिवार')+' की ओर से सादर निमंत्रण';p.querySelector('.details').innerHTML=[dateText(d.date),d.time,d.venue,d.address,d.message].filter(Boolean).map(x=>'<div>'+esc(x)+'</div>').join('');p.querySelectorAll('.gold').forEach(x=>x.style.color=colors[1]);p.querySelector('h2').style.color=colors[1];p.querySelector('.names').style.color=colors[1];}function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function saveCard(){let d=values();if(!d.groom||!d.bride){alert('दूल्हा और दुल्हन का नाम भरें');return}let a=JSON.parse(localStorage.getItem('byawCards')||'[]');let i=a.findIndex(x=>x.id===d.id);if(i>=0)a[i]=d;else a.unshift(d);localStorage.setItem('byawCards',JSON.stringify(a));active=d.id;render(d);alert('निमंत्रण इस ब्राउज़र में सेव हो गया।');}function listCards(){let a=JSON.parse(localStorage.getItem('byawCards')||'[]');$('cards').innerHTML=a.length?a.map(d=>'<div style="padding:14px;border-bottom:1px solid #eee"><b>'+esc(d.groom)+' ♥ '+esc(d.bride)+'</b><div class="muted">'+esc(dateText(d.date))+' · '+esc(d.venue||'')+'</div><div class="actions"><button class="btn" onclick="editCard(\''+d.id+'\')">Edit</button><button class="btn alt" onclick="deleteCard(\''+d.id+'\')">Delete</button><button class="btn alt" onclick="shareCard(\''+d.id+'\')">Share</button></div></div>').join(''):'अभी कोई निमंत्रण सेव नहीं है।'}function editCard(id){let d=JSON.parse(localStorage.getItem('byawCards')||'[]').find(x=>x.id===id);if(!d)return;active=id;Object.keys(d).forEach(k=>{if($(k))$(k).value=d[k]});show('create');render(d)}function deleteCard(id){if(!confirm('यह निमंत्रण हटाएँ?'))return;localStorage.setItem('byawCards',JSON.stringify(JSON.parse(localStorage.getItem('byawCards')||'[]').filter(x=>x.id!==id)));listCards()}function shareCard(id){let d=JSON.parse(localStorage.getItem('byawCards')||'[]').find(x=>x.id===id);share(d)}function shareCurrent(){share(values())}function makeInviteUrl(d){const u=new URL(location.href);u.search='';u.hash='';u.searchParams.set('invite',btoa(unescape(encodeURIComponent(JSON.stringify(d)))));return u.toString()}function share(d){const url=makeInviteUrl(d);let t='💐 शुभ विवाह निमंत्रण 💐\\n'+d.groom+' ♥ '+d.bride+'\\n'+dateText(d.date)+' '+d.time+'\\n'+d.venue+'\\n'+d.address+'\\n'+d.message+'\\n\\nनिमंत्रण खोलें: '+url;window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}document.querySelectorAll('input,textarea,select').forEach(x=>x.addEventListener('input',()=>render()));render();
+const $=id=>document.getElementById(id);let active=null;function show(id){$('create').classList.toggle('hidden',id!=='create');$('list').classList.toggle('hidden',id!=='list');if(id==='list')listCards();}function values(){return {id:active||('byaw'+Date.now().toString(36)),groom:$('groom').value,bride:$('bride').value,family:$('family').value,date:$('date').value,time:$('time').value,venue:$('venue').value,address:$('address').value,map:$('map').value,message:$('message').value,theme:$('theme').value,template:$('template').value};}function dateText(v){if(!v)return 'शुभ विवाह';try{return new Date(v+'T00:00:00').toLocaleDateString('hi-IN',{day:'numeric',month:'long',year:'numeric'})}catch(e){return v}}function applyTemplate(t){$('template').value=t;document.querySelectorAll('.template-tile').forEach(x=>x.classList.toggle('active',x.dataset.template===t));render();}function render(d=values()){let p=$('preview');p.classList.remove('tpl-floral','tpl-mandap','tpl-modern','tpl-celestial','tpl-heritage');if(d.template&&d.template!=='royal')p.classList.add('tpl-'+d.template);document.querySelectorAll('.template-tile').forEach(x=>x.classList.toggle('active',x.dataset.template===(d.template||'royal')));let colors={royal:['#f9e7d1','#741f31','#b68b4c'],rose:['#fff0f1','#9c3f61','#c78a9b'],classic:['#fff9e9','#694b27','#b99a61']}[d.theme||'royal'];p.style.background='radial-gradient(circle at top,'+colors[0]+',#f9e7d1 75%)';p.style.borderColor=colors[2];p.querySelector('.om').textContent='॥ श्री गणेशाय नमः ॥';p.querySelector('.gold').textContent='सादर आमंत्रण';p.querySelector('h2').textContent='शुभ विवाह';p.querySelector('.names').textContent=(d.groom||'दूल्हा')+' ♥ '+(d.bride||'दुल्हन');p.querySelector('p').textContent=(d.family||'सपरिवार')+' की ओर से सादर निमंत्रण';p.querySelector('.details').innerHTML=[dateText(d.date),d.time,d.venue,d.address,d.message].filter(Boolean).map(x=>'<div>'+esc(x)+'</div>').join('');p.querySelectorAll('.gold').forEach(x=>x.style.color=colors[1]);p.querySelector('h2').style.color=colors[1];p.querySelector('.names').style.color=colors[1];renderBook(d);}function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function saveCard(){let d=values();if(!d.groom||!d.bride){alert('दूल्हा और दुल्हन का नाम भरें');return}let a=JSON.parse(localStorage.getItem('byawCards')||'[]');let i=a.findIndex(x=>x.id===d.id);if(i>=0)a[i]=d;else a.unshift(d);localStorage.setItem('byawCards',JSON.stringify(a));active=d.id;render(d);alert('निमंत्रण इस ब्राउज़र में सेव हो गया।');}function listCards(){let a=JSON.parse(localStorage.getItem('byawCards')||'[]');$('cards').innerHTML=a.length?a.map(d=>'<div style="padding:14px;border-bottom:1px solid #eee"><b>'+esc(d.groom)+' ♥ '+esc(d.bride)+'</b><div class="muted">'+esc(dateText(d.date))+' · '+esc(d.venue||'')+'</div><div class="actions"><button class="btn" onclick="editCard(\''+d.id+'\')">Edit</button><button class="btn alt" onclick="deleteCard(\''+d.id+'\')">Delete</button><button class="btn alt" onclick="shareCard(\''+d.id+'\')">Share</button></div></div>').join(''):'अभी कोई निमंत्रण सेव नहीं है।'}function editCard(id){let d=JSON.parse(localStorage.getItem('byawCards')||'[]').find(x=>x.id===id);if(!d)return;active=id;Object.keys(d).forEach(k=>{if($(k))$(k).value=d[k]});show('create');render(d)}function deleteCard(id){if(!confirm('यह निमंत्रण हटाएँ?'))return;localStorage.setItem('byawCards',JSON.stringify(JSON.parse(localStorage.getItem('byawCards')||'[]').filter(x=>x.id!==id)));listCards()}function shareCard(id){let d=JSON.parse(localStorage.getItem('byawCards')||'[]').find(x=>x.id===id);share(d)}function shareCurrent(){share(values())}function makeInviteUrl(d){const u=new URL(location.href);u.search='';u.hash='';u.searchParams.set('invite',btoa(unescape(encodeURIComponent(JSON.stringify(d)))));return u.toString()}function share(d){const url=makeInviteUrl(d);let t='💐 शुभ विवाह निमंत्रण 💐\\n'+d.groom+' ♥ '+d.bride+'\\n'+dateText(d.date)+' '+d.time+'\\n'+d.venue+'\\n'+d.address+'\\n'+d.message+'\\n\\nनिमंत्रण खोलें: '+url;window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}document.querySelectorAll('input,textarea,select').forEach(x=>x.addEventListener('input',()=>render()));render();
 function loadSharedInvite(){try{const encoded=new URLSearchParams(location.search).get('invite');if(!encoded)return;const d=JSON.parse(decodeURIComponent(escape(atob(encoded))));if(!d||!d.groom||!d.bride)return;active=d.id||null;Object.keys(d).forEach(k=>{if($(k))$(k).value=d[k]});render(d);show('create');setTimeout(()=>openWeddingCall(),450)}catch(e){console.warn('Invalid invite link',e)}}
 loadSharedInvite();
+
+
+const bookPages=[];
+let bookIndex=0,bookBusy=false;
+function bookSafe(v){return esc(v||'')}
+function buildBookPages(d){
+ const groom=bookSafe(d.groom||'दूल्हा'),bride=bookSafe(d.bride||'दुल्हन'),family=bookSafe(d.family||'सपरिवार');
+ const date=bookSafe(dateText(d.date)),time=bookSafe(d.time),venue=bookSafe(d.venue),address=bookSafe(d.address),message=bookSafe(d.message||'आपकी स्नेहिल उपस्थिति हमारे लिए सौभाग्य की बात होगी। पधारकर वर-वधू को अपना आशीर्वाद प्रदान करें।');
+ return [
+  {type:'cover',label:'कवर',html:`<div class="book-inner"><div class="book-ornament">✧ ❧ ✧</div><div class="book-mantra">॥ श्री गणेशाय नमः ॥</div><div class="book-divider"></div><div class="book-small">आप सादर आमंत्रित हैं</div><div class="book-title">शुभ विवाह</div><div class="book-names" style="color:#ffedc2">${groom} <span style="color:#e6c77c">♥</span> ${bride}</div><div class="book-copy" style="color:#f7e8c8">प्रेम, परंपरा और मंगल मिलन का पावन अवसर</div><div class="book-divider"></div><div class="book-small">WEDDING INVITATION</div><div class="book-ornament">❦</div></div>`},
+  {type:'paper',label:'निमंत्रण',html:`<div class="book-inner"><div class="book-ornament">❧</div><div class="book-mantra">॥ शुभ विवाह ॥</div><div class="book-title">सादर निमंत्रण</div><div class="book-divider"></div><div class="book-copy">${family} की ओर से आपको सपरिवार आमंत्रित करते हुए हमें अत्यंत हर्ष हो रहा है।</div><div class="book-names">${groom}<br><span style="font-size:17px;color:#a27a3c">♥ के संग ♥</span><br>${bride}</div><div class="book-copy">${message}</div><div class="book-ornament">✦</div></div>`},
+  {type:'paper',label:'शुभ अवसर',html:`<div class="book-inner"><div class="book-ornament">✺</div><div class="book-mantra">MANGAL PARINAY</div><div class="book-title">शुभ अवसर</div><div class="book-divider"></div><div class="book-small">विवाह की तिथि</div><div class="book-date">${date}</div>${time?'<div class="book-copy">शुभ समय · '+time+'</div>':''}<div class="book-divider"></div><div class="book-small">विवाह स्थल</div><div class="book-copy"><strong>${venue||'विवाह स्थल'}</strong><br>${address}</div><div class="book-ornament">❧</div></div>`},
+  {type:'paper',label:'आभार',html:`<div class="book-inner"><div class="book-ornament">❀</div><div class="book-mantra">YOUR PRESENCE IS OUR BLESSING</div><div class="book-title">पधारो सा</div><div class="book-divider"></div><div class="book-copy">आपकी गरिमामयी उपस्थिति और शुभाशीष<br>हमारे इस मंगल अवसर को यादगार बनाएँगे।</div><div class="book-names" style="font-size:clamp(20px,5vw,27px)">${groom} ♥ ${bride}</div><div class="book-copy">सप्रेम<br>${family}</div><div class="book-divider"></div><div class="book-small">॥ मंगलम भगवान विष्णुः ॥</div><div class="book-ornament">✧ ❧ ✧</div></div>`}
+ ];
+}
+function makeBookPage(page){const el=document.createElement('div');el.className='book-page '+(page.type==='cover'?'cover':'paper');el.innerHTML=page.html;return el;}
+function renderBook(d=values()){
+ const stage=$('bookStage');if(!stage)return;
+ const wasAtEnd=bookIndex>=bookPages.length-1;
+ bookPages.splice(0,bookPages.length,...buildBookPages(d));
+ if(bookIndex>=bookPages.length)bookIndex=bookPages.length-1;
+ const current=$('bookCurrent');const fresh=makeBookPage(bookPages[bookIndex]);current.className=fresh.className;current.innerHTML=fresh.innerHTML;
+ updateBookControls();
+}
+function updateBookControls(){
+ const prev=$('bookPrev'),next=$('bookNext'),count=$('bookCount');
+ if(!prev)return;
+ prev.disabled=bookIndex===0;next.disabled=bookIndex===bookPages.length-1;
+ count.textContent=(bookPages[bookIndex]?.label||'पन्ना')+' · '+(bookIndex+1)+' / '+bookPages.length;
+}
+function turnBook(direction){
+ if(bookBusy)return;
+ const target=bookIndex+direction;if(target<0||target>=bookPages.length)return;
+ const current=$('bookCurrent'),turn=$('bookTurn'),front=$('bookTurnFront'),back=$('bookTurnBack');
+ const frontPage=makeBookPage(bookPages[bookIndex]),backPage=makeBookPage(bookPages[target]);
+ front.innerHTML=frontPage.innerHTML;front.className='face front '+frontPage.className;
+ back.innerHTML=backPage.innerHTML;back.className='face back '+backPage.className;
+ turn.className='book-turn'+(direction<0?' reverse':'');
+ if(direction<0){front.innerHTML=backPage.innerHTML;front.className='face front '+backPage.className;back.innerHTML=frontPage.innerHTML;back.className='face back '+frontPage.className;}
+ void turn.offsetWidth;turn.classList.add('active');bookBusy=true;
+ setTimeout(()=>{bookIndex=target;const fresh=makeBookPage(bookPages[bookIndex]);current.className=fresh.className;current.innerHTML=fresh.innerHTML;turn.className='book-turn';bookBusy=false;updateBookControls();},850);
+}
 
 function openWeddingCall(){
   const d=values();
