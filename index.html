@@ -153,6 +153,24 @@
 @media(max-width:420px){.modern-event-list{grid-template-columns:1fr 1fr}.modern-section{padding:45px 17px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 
+
+/* Make the invitation itself the homepage; creator tools follow below */
+header{background:linear-gradient(135deg,#eef0e7,#dfe5d8)!important;color:#43513f!important;padding:28px 18px 34px!important;border-bottom:1px solid #d5dacd}
+header small,header p{color:#74816c!important}header h1{color:#43513f!important;font-size:clamp(26px,5vw,42px)!important;margin:8px 0}
+header:after{color:#8f9a80!important;opacity:.12}
+.wrap{display:flex;flex-direction:column;gap:18px;margin:18px auto 55px!important}
+.wrap>.tabs{order:2;margin:0}
+.wrap>#create{order:3}
+.wrap>#list{order:4}
+.wrap>#templatePanel{order:5}
+.wrap>#previewPanel{order:1;margin:0!important;padding:12px!important;background:transparent;border:0;box-shadow:none}
+#previewPanel>.section{display:none}
+#previewPanel>.actions{margin:16px auto 0}
+#previewPanel>.actions .btn{border-radius:30px}
+#modernInvite{max-width:720px;margin:0 auto;border-radius:4px}
+#modernInvite .modern-hero{min-height:min(690px,82vh)}
+#modernInvite .modern-topline{font-size:10px}
+@media(min-width:850px){#modernInvite .modern-hero{min-height:690px}}
 </style></head><body>
 <div class="petals-layer" id="petalsLayer" aria-hidden="true"></div>
 <audio id="invitationMusic" loop preload="none"><source src="https://assets.mixkit.co/music/preview/mixkit-royal-celebration-431.mp3" type="audio/mpeg"></audio>
@@ -181,7 +199,7 @@
 <div class="field"><label>कार्ड का रंग</label><select id="theme"><option value="royal">राजस्थानी रॉयल</option><option value="rose">गुलाबी पुष्प</option><option value="classic">क्लासिक क्रीम</option></select></div></div>
 <div class="actions"><button class="btn" onclick="saveCard()">निमंत्रण सेव करें</button><button class="btn alt" onclick="render()">Preview देखें</button><button class="btn call-preview-btn" onclick="openWeddingCall()">Wedding Call Preview</button></div><p class="muted" style="font-size:13px">नोट: यह शुरुआती डेमो है। अभी सेव किया गया डेटा इसी ब्राउज़र में रहता है। ऑनलाइन अलग-अलग ग्राहकों के सुरक्षित लिंक के लिए Firebase जोड़ना अगला चरण है।</p></section>
 <section id="list" class="panel hidden"><h2 class="section">मेरे निमंत्रण</h2><div id="cards"></div></section>
-<section class="panel" style="margin-top:20px"><h2 class="section">अपनी पसंद का डिज़ाइन चुनें</h2><p class="muted">हर निमंत्रण के लिए अलग अंदाज़ — किसी भी डिज़ाइन पर टैप करें।</p><div class="template-grid">
+<section class="panel" id="templatePanel" style="margin-top:20px"><h2 class="section">अपनी पसंद का डिज़ाइन चुनें</h2><p class="muted">हर निमंत्रण के लिए अलग अंदाज़ — किसी भी डिज़ाइन पर टैप करें।</p><div class="template-grid">
 <div class="template-tile active" data-template="royal" onclick="applyTemplate('royal')"><div class="template-art art-royal">॥ शुभ ॥<br>❀</div><b>राजस्थानी रॉयल</b><div class="muted">पारंपरिक सुनहरा</div></div>
 <div class="template-tile" data-template="floral" onclick="applyTemplate('floral')"><div class="template-art art-floral">❀ ♥ ❀</div><b>फ्लोरल रोमांस</b><div class="muted">गुलाबी फूलों वाला</div></div>
 <div class="template-tile" data-template="mandap" onclick="applyTemplate('mandap')"><div class="template-art art-mandap">ॐ<br>✺</div><b>शाही मंडप</b><div class="muted">गहरा मरून और गोल्ड</div></div>
@@ -189,7 +207,7 @@
 <div class="template-tile" data-template="heritage" onclick="applyTemplate('heritage')"><div class="template-art art-heritage">✧<br>❧</div><b>राजसी महल</b><div class="muted">प्रीमियम शाही विरासत</div></div>
 <div class="template-tile" data-template="modern" onclick="applyTemplate('modern')"><div class="template-art art-modern">✦ ♥ ✦</div><b>मॉडर्न एलिगेंट</b><div class="muted">सादा और प्रीमियम</div></div>
 </div></section>
-<section class="panel" style="margin-top:20px"><h2 class="section">कार्ड का लाइव प्रीव्यू</h2><div class="modern-invite" id="modernInvite">
+<section class="panel" id="previewPanel" style="margin-top:20px"><h2 class="section">कार्ड का लाइव प्रीव्यू</h2><div class="modern-invite" id="modernInvite">
 <div class="modern-topline" aria-label="Wedding invitation"><div><span>THE WEDDING CELEBRATION</span><span>✦</span><span>WITH LOVE</span></div></div>
 <div class="modern-hero">
  <div class="modern-flower flower-one">✿</div><div class="modern-flower flower-two">✽</div>
