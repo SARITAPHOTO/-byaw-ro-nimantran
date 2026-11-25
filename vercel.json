@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/wedding/:slug", "destination": "/?wedding=:slug" }
+  ]
+}
