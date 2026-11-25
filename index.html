@@ -113,7 +113,17 @@
 @media(max-width:480px){.flipbook-shell{margin:0 -5px;padding:18px 6px 22px}.book-stage{width:min(88vw,340px)}.book-controls{gap:14px}}
 @media(prefers-reduced-motion:reduce){.book-turn.active{animation-duration:.01ms}}
 
+
+/* Reference-inspired maroon/gold details, falling petals and music */
+.petals-layer{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:20}
+.invite-petal{position:absolute;top:-24px;width:11px;height:16px;border-radius:85% 0 85% 0;background:linear-gradient(135deg,#ffe0e7,#c94c68);opacity:.78;animation:invitePetalFall linear forwards;filter:drop-shadow(0 2px 3px #4b122333)}
+@keyframes invitePetalFall{to{transform:translate3d(var(--drift),110vh,0) rotate(620deg);opacity:.05}}
+.music-toggle{border:1px solid #e4c47d;background:linear-gradient(120deg,#6b1d2a,#421321);color:#ffedc2;border-radius:24px;padding:9px 14px;font-weight:bold;cursor:pointer;box-shadow:0 5px 15px #3d132522}
+@media(prefers-reduced-motion:reduce){.invite-petal{display:none;animation:none}}
+
 </style></head><body>
+<div class="petals-layer" id="petalsLayer" aria-hidden="true"></div>
+<audio id="invitationMusic" loop preload="none"><source src="https://assets.mixkit.co/music/preview/mixkit-royal-celebration-431.mp3" type="audio/mpeg"></audio>
 <div id="weddingCall" class="call-overlay" role="dialog" aria-modal="true" aria-label="Wedding call invitation">
   <div class="call-card">
     <div class="call-kicker">॥ शुभ विवाह ॥</div>
@@ -129,7 +139,7 @@
     </div>
   </div>
 </div>
-<header><small>॥ शुभ विवाह ॥</small><h1>ब्याव रो निमंत्रण</h1><p>आपके अपनों के लिए, प्यार से सजा एक खास निमंत्रण</p></header><main class="wrap"><div class="tabs"><button class="btn" onclick="show('create')">निमंत्रण बनाएँ</button><button class="btn alt" onclick="show('list')">मेरे निमंत्रण</button></div>
+<header><small>॥ शुभ विवाह ॥</small><h1>ब्याव रो निमंत्रण</h1><p>आपके अपनों के लिए, प्यार से सजा एक खास निमंत्रण</p><button class="music-toggle" id="musicToggle" onclick="toggleInvitationMusic()" style="margin-top:18px">♫ संगीत चालू करें</button></header><main class="wrap"><div class="tabs"><button class="btn" onclick="show('create')">निमंत्रण बनाएँ</button><button class="btn alt" onclick="show('list')">मेरे निमंत्रण</button></div>
 <section id="create" class="panel"><h2 class="section">अपना शादी कार्ड तैयार करें</h2><input type="hidden" id="template" value="royal"><div class="grid">
 <div class="field"><label>दूल्हे का नाम</label><input id="groom" placeholder="जैसे: मोहित"></div><div class="field"><label>दुल्हन का नाम</label><input id="bride" placeholder="जैसे: काजल"></div>
 <div class="field"><label>परिवार / आमंत्रक</label><input id="family" placeholder="सपरिवार"></div><div class="field"><label>विवाह की तारीख</label><input id="date" type="date"></div>
@@ -214,6 +224,26 @@ function closeWeddingCall(){ $('weddingCall').classList.remove('show'); }
 function acceptWeddingCall(){
   $('weddingCall').classList.remove('show');
   render();
-  setTimeout(()=>{const p=$('preview');p.scrollIntoView({behavior:'smooth',block:'center'});p.animate([{transform:'scale(.96)',opacity:.65},{transform:'scale(1)',opacity:1}],{duration:650,easing:'ease-out'});},120);
+  const music=$('invitationMusic');
+  if(music){music.play().then(()=>{const b=$('musicToggle');if(b)b.textContent='♫ संगीत बंद करें';}).catch(()=>{});}
+  setTimeout(()=>{const p=$('bookStage');if(p){p.scrollIntoView({behavior:'smooth',block:'center'});p.animate([{transform:'scale(.97)',opacity:.7},{transform:'scale(1)',opacity:1}],{duration:650,easing:'ease-out'});}},120);
 }
+let invitationMusicOn=false;
+function toggleInvitationMusic(){
+ const music=$('invitationMusic'),button=$('musicToggle');
+ if(!music)return;
+ if(invitationMusicOn){music.pause();invitationMusicOn=false;if(button)button.textContent='♫ संगीत चालू करें';}
+ else{music.play().then(()=>{invitationMusicOn=true;if(button)button.textContent='♫ संगीत बंद करें';}).catch(()=>{if(button)button.textContent='♫ दोबारा संगीत चलाएँ';});}
+}
+function createInvitePetal(){
+ const layer=$('petalsLayer');if(!layer||document.hidden)return;
+ if(layer.childElementCount>22)layer.firstElementChild.remove();
+ const petal=document.createElement('i');petal.className='invite-petal';
+ petal.style.left=(Math.random()*100)+'vw';
+ petal.style.setProperty('--drift',((Math.random()-.5)*150)+'px');
+ const duration=5+Math.random()*5;petal.style.animationDuration=duration+'s';
+ petal.style.transform='scale('+(0.65+Math.random()*.8)+')';
+ layer.appendChild(petal);setTimeout(()=>petal.remove(),duration*1000+200);
+}
+setInterval(createInvitePetal,520);
 </script></body></html>
